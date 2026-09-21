@@ -1,0 +1,72 @@
+@import "tailwindcss";
+
+@theme {
+  --color-bg: #f4f2ec;
+  --color-surface: #ffffff;
+  --color-sunken: #efece5;
+  --color-border: #e1ddd2;
+  --color-fg: #171613;
+  --color-muted: #6b675e;
+  --color-accent: #c2410c;
+  --color-accent-fg: #ffffff;
+  --color-chart: #d9480f;
+  --color-ok: #15803d;
+  --color-bad: #b91c1c;
+  --font-sans: var(--font-body), ui-sans-serif, system-ui, sans-serif;
+  --font-display: var(--font-heading), ui-sans-serif, system-ui, sans-serif;
+  --font-mono: var(--font-code), ui-monospace, "SF Mono", Menlo, Consolas, monospace;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --color-bg: #121110;
+    --color-surface: #1c1b19;
+    --color-sunken: #171614;
+    --color-border: #2e2c28;
+    --color-fg: #eeebe4;
+    --color-muted: #9b968b;
+    --color-accent: #ff8a4c;
+    --color-accent-fg: #171613;
+    --color-chart: #e85d1a;
+    --color-ok: #4ade80;
+    --color-bad: #f87171;
+  }
+}
+
+html {
+  background: var(--color-bg);
+  color-scheme: light dark;
+}
+
+body {
+  background: var(--color-bg);
+  color: var(--color-fg);
+}
+
+::selection {
+  background: var(--color-accent);
+  color: var(--color-accent-fg);
+}
+
+/* Latar kertas bergaris halus — cukup untuk memberi tekstur tanpa ramai. */
+.kertas {
+  background-image: radial-gradient(color-mix(in oklab, var(--color-fg) 9%, transparent) 1px, transparent 1px);
+  background-size: 18px 18px;
+}
+
+@keyframes muncul {
+  from { opacity: 0; transform: translateY(6px); }
+  to { opacity: 1; transform: none; }
+}
+.muncul {
+  animation: muncul 0.35s cubic-bezier(0.22, 1, 0.36, 1) both;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .muncul { animation: none; }
+}
+
+dialog::backdrop {
+  background: rgb(0 0 0 / 0.45);
+  backdrop-filter: blur(2px);
+}
