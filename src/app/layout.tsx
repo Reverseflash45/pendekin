@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { Bricolage_Grotesque, Inter, JetBrains_Mono } from "next/font/google";
 import Link from "next/link";
+import { Analytics } from "@vercel/analytics/next";
 import "./globals.css";
 
 const heading = Bricolage_Grotesque({ subsets: ["latin"], variable: "--font-heading", weight: ["600", "800"] });
@@ -29,6 +30,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
         <footer className="mx-auto w-full max-w-3xl px-4 py-10 text-sm text-muted sm:px-6">
           Dibuat oleh Rafi Fernandito · Next.js + Supabase
         </footer>
+        <Analytics />
       </body>
     </html>
   );
