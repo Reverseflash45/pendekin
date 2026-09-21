@@ -54,7 +54,10 @@ export async function POST(req: NextRequest) {
         p_alias: alias || null,
         p_kedaluwarsa: kedaluwarsa,
       });
-      if (error) return { masukan, ok: false, galat: pesanGalat(error.message) };
+      if (error) {
+        console.error("buat_tautan gagal:", error.message);
+        return { masukan, ok: false, galat: pesanGalat(error.message) };
+      }
       const t = data as Tautan;
       return { masukan, ok: true, kode: t.kode, url: t.url_tujuan, kedaluwarsa: t.kedaluwarsa_pada };
     }),

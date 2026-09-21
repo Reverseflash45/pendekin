@@ -16,6 +16,7 @@ export async function GET(req: NextRequest, { params }: { params: Promise<{ kode
     p_perangkat: jenisPerangkat(req.headers.get("user-agent")),
   });
 
+  if (error) console.error("buka_tautan gagal:", error.message);
   if (error || typeof tujuan !== "string") return Response.redirect(hilang, 307);
 
   // 302, bukan 301: peramban menyimpan 301 selamanya dan berhenti bertanya ke
