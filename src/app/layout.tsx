@@ -8,9 +8,15 @@ const heading = Bricolage_Grotesque({ subsets: ["latin"], variable: "--font-head
 const body = Inter({ subsets: ["latin"], variable: "--font-body" });
 const code = JetBrains_Mono({ subsets: ["latin"], variable: "--font-code", weight: ["400", "600"] });
 
+const judul = "Pendekin — pendekkan banyak tautan sekaligus";
+const deskripsi = "Pemendek URL gratis: sampai 20 tautan sekali proses, lengkap dengan QR code dan statistik klik.";
+
 export const metadata: Metadata = {
-  title: "Pendekin — pendekkan banyak tautan sekaligus",
-  description: "Pemendek URL gratis: sampai 20 tautan sekali proses, lengkap dengan QR code dan statistik klik.",
+  metadataBase: new URL("https://pendek.raffstw.my.id"),
+  title: judul,
+  description: deskripsi,
+  openGraph: { title: judul, description: deskripsi, url: "/", siteName: "Pendekin", locale: "id_ID", type: "website" },
+  twitter: { card: "summary_large_image", title: judul, description: deskripsi },
 };
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
