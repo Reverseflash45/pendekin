@@ -1,4 +1,5 @@
 import type { NextRequest } from "next/server";
+import { ambilJatah, ipDari, BATAS } from "@/lib/batas";
 import { supabase, type Tautan } from "@/lib/supabase";
 import { MAKS_URL, POLA_ALIAS, rapikanUrl } from "@/lib/url";
 
@@ -23,6 +24,14 @@ export async function POST(req: NextRequest) {
   if (items.length === 0) return Response.json({ galat: "Belum ada URL." }, { status: 400 });
   if (items.length > MAKS_URL)
     return Response.json({ galat: `Maksimal ${MAKS_URL} URL sekali proses.` }, { status: 400 });
+
+  const tunggu = ambilJatah(ipDari(req.headers), items.length);
+  if (tunggu > 0) {
+    return Response.json(
+      { galat: `Batas ${BATAS.MAKS_URL_PER_JAM} tautan per jam tercapai. Coba lagi dalam ${Math.ceil(tunggu / 60)} menit.` },
+      { status: 429, headers: { "Retry-After": String(tunggu) } },
+    );
+  }
 
   const hari = body.kedaluwarsaHari;
   const kedaluwarsa =

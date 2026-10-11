@@ -11,6 +11,7 @@ Pemendek URL massal: tempel sampai 20 tautan sekaligus dan dapatkan tautan pende
 - **Ekspor**: salin semua hasil atau unduh sebagai CSV.
 - **Riwayat** tersimpan di peramban (localStorage), tanpa perlu akun.
 - **Pemeriksaan tautan berbahaya** lewat Google Safe Browsing (opsional).
+- **Batas laju**: maksimal 100 tautan baru per jam per IP, supaya domain tidak dipakai massal untuk spam atau phishing.
 
 ## Keputusan teknis
 
