@@ -267,10 +267,10 @@ export function Pemendek() {
               h.ok ? (
                 <li key={h.kode} className="muncul flex flex-col gap-3 p-4 sm:flex-row sm:items-center" style={{ animationDelay: `${i * 30}ms` }}>
                   <div className="min-w-0 flex-1">
-                    <a href={pendek(h.kode)} target="_blank" rel="noreferrer" className="font-mono text-[15px] font-semibold text-accent hover:underline">
+                    <a href={pendek(h.kode)} target="_blank" rel="noreferrer" className={`pita pita-${i % 3} text-[13px]`}>
                       {host}/{h.kode}
                     </a>
-                    <p className="truncate text-sm text-muted" title={h.url}>
+                    <p className="mt-2 truncate text-sm text-muted" title={h.url}>
                       {h.url}
                     </p>
                   </div>

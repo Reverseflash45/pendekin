@@ -1,41 +1,30 @@
 @import "tailwindcss";
 
 @theme {
-  --color-bg: #f4f2ec;
+  /* meja kantor abu-abu, tautan pendek dicetak di pita label timbul */
+  --color-bg: #e6eaee;
   --color-surface: #ffffff;
-  --color-sunken: #efece5;
-  --color-border: #e1ddd2;
-  --color-fg: #171613;
-  --color-muted: #6b675e;
-  --color-accent: #c2410c;
+  --color-sunken: #f1f3f5;
+  --color-border: #cfd5db;
+  --color-fg: #121212;
+  --color-muted: #555c63;
+  --color-accent: #d7261e;
   --color-accent-fg: #ffffff;
-  --color-chart: #d9480f;
+  --color-chart: #1f5fd6;
   --color-ok: #15803d;
   --color-bad: #b91c1c;
+  --color-pita-hitam: #121212;
+  --color-pita-merah: #d7261e;
+  --color-pita-biru: #1f5fd6;
   --font-sans: var(--font-body), ui-sans-serif, system-ui, sans-serif;
   --font-display: var(--font-heading), ui-sans-serif, system-ui, sans-serif;
   --font-mono: var(--font-code), ui-monospace, "SF Mono", Menlo, Consolas, monospace;
-}
-
-@media (prefers-color-scheme: dark) {
-  :root {
-    --color-bg: #121110;
-    --color-surface: #1c1b19;
-    --color-sunken: #171614;
-    --color-border: #2e2c28;
-    --color-fg: #eeebe4;
-    --color-muted: #9b968b;
-    --color-accent: #ff8a4c;
-    --color-accent-fg: #171613;
-    --color-chart: #e85d1a;
-    --color-ok: #4ade80;
-    --color-bad: #f87171;
-  }
+  --font-pita: var(--font-label), "Arial Black", sans-serif;
 }
 
 html {
   background: var(--color-bg);
-  color-scheme: light dark;
+  color-scheme: light;
 }
 
 body {
@@ -48,10 +37,45 @@ body {
   color: var(--color-accent-fg);
 }
 
-/* Latar kertas bergaris halus — cukup untuk memberi tekstur tanpa ramai. */
+/* Permukaan meja: serat halus. */
 .kertas {
-  background-image: radial-gradient(color-mix(in oklab, var(--color-fg) 9%, transparent) 1px, transparent 1px);
-  background-size: 18px 18px;
+  background-image:
+    repeating-linear-gradient(90deg, rgb(18 18 18 / 0.025) 0 1px, transparent 1px 5px),
+    radial-gradient(color-mix(in oklab, var(--color-fg) 7%, transparent) 1px, transparent 1px);
+  background-size: auto, 18px 18px;
+}
+
+/* Pita label timbul (Dymo): huruf putih menonjol di atas plastik berwarna. */
+.pita {
+  display: inline-block;
+  max-width: 100%;
+  padding: 0.42em 0.85em 0.36em;
+  border-radius: 3px;
+  background: var(--warna-pita, var(--color-pita-hitam));
+  color: #fff;
+  /* huruf mono yang membedakan besar-kecil: kode tautan peka huruf */
+  font-family: var(--font-mono);
+  font-weight: 700;
+  letter-spacing: 0.04em;
+  text-shadow: 0 1px 0 rgb(0 0 0 / 0.45), 0 -1px 0 rgb(255 255 255 / 0.22);
+  box-shadow:
+    inset 0 1px 0 rgb(255 255 255 / 0.18),
+    inset 0 -2px 0 rgb(0 0 0 / 0.18),
+    0 2px 3px rgb(0 0 0 / 0.22);
+  overflow-wrap: anywhere;
+}
+/* pita merek memakai huruf label Dymo yang hanya kapital */
+.pita-merek {
+  font-family: var(--font-pita);
+  font-weight: 400;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+}
+.pita-0 { --warna-pita: var(--color-pita-hitam); }
+.pita-1 { --warna-pita: var(--color-pita-merah); }
+.pita-2 { --warna-pita: var(--color-pita-biru); }
+a.pita:hover {
+  filter: brightness(1.15);
 }
 
 @keyframes muncul {
