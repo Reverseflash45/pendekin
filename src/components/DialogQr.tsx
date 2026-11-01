@@ -48,14 +48,20 @@ export function DialogQr({ url, onTutup }: { url: string | null; onTutup: () => 
           <span className="text-sm text-neutral-500">Membuat QR…</span>
         )}
       </div>
-      <a
-        href={siap ?? undefined}
-        download={namaBerkas}
-        aria-disabled={!siap}
-        className="mt-4 block rounded-xl bg-fg py-2.5 text-center font-semibold text-bg transition hover:opacity-90 aria-disabled:pointer-events-none aria-disabled:opacity-50"
-      >
-        Unduh PNG
-      </a>
+      {siap ? (
+        <a
+          href={siap}
+          download={namaBerkas}
+          className="mt-4 block rounded-xl bg-fg py-2.5 text-center font-semibold text-bg transition hover:opacity-90"
+        >
+          Unduh PNG
+        </a>
+      ) : (
+        // tautan tanpa alamat bukan tautan: selama QR dibuat, tampilkan tombol nonaktif
+        <button type="button" disabled className="mt-4 block w-full rounded-xl bg-fg py-2.5 text-center font-semibold text-bg opacity-50">
+          Unduh PNG
+        </button>
+      )}
     </dialog>
   );
 }
